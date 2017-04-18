@@ -6,9 +6,24 @@ function deleteStorageData() {
   storage.clear();
 }
 
-async function deleteData() {
+async function deleteFileData() {
   await del('saved-tweets/*.txt');
 }
 
-deleteStorageData();
-deleteData();
+function inFiveSeconds() {
+  return new Promise( (resolve) => {
+    setTimeout(function() {
+      resolve();
+    }, 5000);
+  });
+}
+
+async function main(){
+  console.log("Clearing data in 5 seconds...")
+  await inFiveSeconds();
+  deleteFileData();
+  deleteStorageData();
+  console.log("Data is cleared!");
+}
+
+main();

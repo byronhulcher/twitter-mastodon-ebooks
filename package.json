@@ -7,7 +7,7 @@
   "description": "What am I about?",
   "main": "bot.js",
   "scripts": {
-    "start": "npm run bot",
+    "start": "",
     "download": "node download-tweets.js",
     "delete-all-data": "node cmd/clean-data.js",
     "bot": "node bot.js",
@@ -20,7 +20,7 @@
     "express": "^4.15.2",
     "he": "^1.1.1",
     "markov-strings": "^1.3.2",
-    "node-persist": "^2.0.9",
+    "node-persist": "^2.0.10",
     "to-utf-8": "^1.3.0",
     "twit": "^2.2.5"
   },
