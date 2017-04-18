@@ -4,19 +4,21 @@
 // by default, you've got jQuery,
 // add other scripts at the bottom of index.html
 
-$(function() {
+$(function () {
   console.log('hello world :o');
-  
-  $.get('/dreams', function(dreams) {
-    dreams.forEach(function(dream) {
+
+  $.get('/dreams', function (dreams) {
+    dreams.forEach(function (dream) {
       $('<li></li>').text(dream).appendTo('ul#dreams');
     });
   });
 
-  $('form').submit(function(event) {
-    event.preventDefault();
+  $('form').submit(function (event) {
     var dream = $('input').val();
-    $.post('/dreams?' + $.param({dream: dream}), function() {
+
+    event.preventDefault();
+
+    $.post('/dreams?' + $.param({dream: dream}), function () {
       $('<li></li>').text(dream).appendTo('ul#dreams');
       $('input').val('');
       $('input').focus();

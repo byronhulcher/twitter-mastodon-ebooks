@@ -1,5 +1,5 @@
 let Markov = require('markov-strings'),
-    markov;
+  markov;
 
 const newTweetOptions = {
   maxLength: 140,

@@ -1,0 +1,5 @@
+.env
+tweets.txt
+.node-persist
+node_modules
+
