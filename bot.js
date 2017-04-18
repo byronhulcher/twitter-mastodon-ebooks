@@ -1,5 +1,5 @@
-const tweetDownloader = require('./download-tweets'),
-  tweetGenerator = require('./generate-tweets');
+const tweetDownloader = require('./lib/download-tweets'),
+  tweetGenerator = require('./lib/generate-tweets');
 
 async function main() {
   let newTweets = [];

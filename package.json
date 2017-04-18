@@ -9,11 +9,13 @@
   "scripts": {
     "start": "npm run bot",
     "download": "node download-tweets.js",
+    "delete-all-data": "node cmd/clean-data.js",
     "bot": "node bot.js",
     "eslint": "eslint ./"
   },
   "dependencies": {
     "bignum": "^0.12.5",
+    "del": "^2.2.2",
     "eslint": "^3.19.0",
     "express": "^4.15.2",
     "he": "^1.1.1",
