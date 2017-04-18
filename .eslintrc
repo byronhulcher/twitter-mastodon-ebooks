@@ -11,7 +11,7 @@
       "requireReturnDescription": false
     }],
     // best practices
-    "complexity": [2, 8],
+    "complexity": [2, 12],
     "default-case": 2,
     "guard-for-in": 2,
     "no-alert": 1,

@@ -1,24 +1,12 @@
-const markovTweetGenerator = require('./markov'),
-  tweetDownloader = require('./download-tweets'),
-  tweetCorpus = require('./read-local-tweets');
-
+const tweetDownloader = require('./download-tweets'),
+  tweetGenerator = require('./generate-tweets');
 
 async function main() {
-  let oldTweets = [],
-    newTweets = [];
+  let newTweets = [];
 
   await tweetDownloader.run();
-  oldTweets = await tweetCorpus.getTweetsAsync();
 
-  markovTweetGenerator.build(oldTweets);
-  for (let i = 0; i < 10; i++) {
-    try {
-      newTweets.push(markovTweetGenerator.generateTweet());
-    } catch (error) {
-      return false;
-    }
-  }
-  newTweets.sort((a, b) => a.score < b.score);
+  newTweets = await tweetGenerator.generateTweetsAsync();
   newTweets.forEach( (tweet) => console.log( tweet.string ) );
 }
 

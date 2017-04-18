@@ -32,11 +32,12 @@ function decodeHTMLFromTweets(tweets) {
 }
 
 function replaceNewlinesInTweets(tweets) {
-  return tweets.map( (tweet)=> tweet.replace(/(\r\n|\n|\r)/gm,' ') )
+  return tweets.map( (tweet)=> tweet.replace(/(\r\n|\n|\r)/gm,' ') );
 }
 
-function getCleanTweetTexts(tweets){
+function getCleanTweetTexts(tweets) {
   let tweetTexts = tweets.map( (tweet) => tweet.full_text );
+
   tweetTexts = replaceNewlinesInTweets(tweetTexts);
   tweetTexts = decodeHTMLFromTweets(tweetTexts);
   return tweetTexts;
@@ -49,16 +50,17 @@ async function getTweets(twitterName, paging) {
     options = {},
     timelineResponse,
     tweets;
+
   do {
-    if (paging == 'max_id' && maxId){
-      options = { 'max_id': bignum(maxId).sub(100).toString() };
-    } else if (paging == 'since_id' && sinceId){
-      options = { 'since_id': bignum(sinceId).add(100).toString() };
+    if (paging == 'max_id' && maxId) {
+      options = { max_id: bignum(maxId).sub(100).toString() };
+    } else if (paging == 'since_id' && sinceId) {
+      options = { since_id: bignum(sinceId).add(100).toString() };
     }
     timelineResponse = await twit.get('statuses/user_timeline', Object.assign({}, defaultTweetOptions, options));
     tweets = timelineResponse.data;
-    console.log("Got", tweets.length, "tweets");
-    if (tweets && tweets.length > 0){
+    console.log('Got', tweets.length, 'tweets');
+    if (tweets && tweets.length > 0) {
       if (!sinceId || tweets[0].id > sinceId) {
         sinceId = tweets[0].id;
       }
@@ -68,11 +70,11 @@ async function getTweets(twitterName, paging) {
       fileWriter.writeToFile('tweets' + '.txt', getCleanTweetTexts(tweets) );
     }
   } while (tweets && tweets.length > 0);
-  
-  if (sinceId){
+
+  if (sinceId) {
     await storage.setItem(twitterName + ':since_id', sinceId);
   }
-  if (maxId){
+  if (maxId) {
     await storage.setItem(twitterName + ':max_id', maxId);
   }
 }
