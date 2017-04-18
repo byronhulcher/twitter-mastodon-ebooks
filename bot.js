@@ -10,5 +10,4 @@ async function main() {
   newTweets.forEach( (tweet) => console.log( tweet.string ) );
 }
 
-
 main();
